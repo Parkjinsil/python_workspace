@@ -116,7 +116,7 @@ print(s2)
 
 # 문자열 나누기 - split
 a = "Life is too short."
-print(a.split())
+print(a.split()) # ['Life', 'is', 'too', 'short.']
 b = "a:b:c:d"
 print(b.split(':'))
 
@@ -188,8 +188,18 @@ s_list4 = n_list[2:11:2] # [2, 4, 6, 8, 10]
 print(s_list4)
 
 s_listx = n_list[6:11]
-s_list5 = s_listx[::-1] # [10, 9, 8, 7, 6]
-print(s_list5)
+s_list5 = s_listx[::-1]
+# 위 두 문장을 한 문장으로
+s_list5 = n_list[10:5:-1]  
+# -> 10은 시작 인덱스 , 5는 종료 인덱스(포함X), -1은 step값으로, 뒤에서부터 요소를 선택
+print(s_list5) # [10, 9, 8, 7, 6]
+
+a =list(range(10))[-3::-1] 
+# 1) [-3::-1]  -> 정답 : 뒤에서 세 번째 인덱스부터 시작인덱스까지(종료인덱스 없으므로) 뒤에서부터 선택해라
+# 2) [3::2]    -> [3, 5, 7, 9]
+# 3) [7:0]     -> []
+# 4) [-2::-1]  -> [8, 7, 6, 5, 4, 3, 2, 1, 0]
+print(a) # [7, 6, 5, 4, 3, 2, 1, 0]
 
 n_list = [11, 22, 33, 44, 55, 66]
 print(n_list)
