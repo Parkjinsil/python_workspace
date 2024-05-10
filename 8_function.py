@@ -171,3 +171,116 @@ print_sum()
 result = a+b
 print('print_sum()외부:',a,'과',b,'의 합은',result,'입니다.') # 300
     
+# 내장 함수
+# abs(x) : 절대값 반환
+print(abs(-3)) 
+
+# print(help(dict())) # 함수설명
+
+# sorted(iterable)
+dic = {82:"한국", 1:'미국', 81:'일본', 44:'영국'}
+print(sorted(dic.items(), reverse=True)) # key 정렬
+print(sorted(dic.items(), key=lambda x:x[1])) # value 정렬
+
+# slice(start,end,step, reverse=True)
+lst =[0,1,2,3]
+print('lst[0:2] :',lst[0:2])
+print(lst[slice(0,2)])
+
+# eval() : 문자열을 수식화해서 평가한 다음 값 반환
+print(eval('2+3')) # 5
+
+# filter(function, iterable) -> 실제 값 확인하려면 다시 리스트나 다른 iterable로 명시적으로 변환해야함
+a = [1,2,3,4]
+print(list(filter(lambda x:x%2==0,a)))
+
+# divmod(x,y) : x/y의 몫과 나머지를 tuple로 반환
+# pow(x,y) : x**Y 반환
+
+'''
+형변환 함수
+- int(x)
+- float(x)
+- str(x)
+- list(seq)  -> sequence 순서형 데이터 
+- tuple(seq)
+'''
+
+print(list('happy'))  # ['h', 'a', 'p', 'p', 'y']
+print(tuple('happy')) # ('h', 'a', 'p', 'p', 'y')
+
+# input() : 사용자로부터 데이터를 입력받는 함수
+
+# type() : 객체의 자료형 반환
+print(type(123)) # int
+print(type('Hello String!')) # str
+print(type(120.3)) # float
+print(type([100,300,600])) # list
+
+'''
+모듈
+: 이미 작성해 놓은 프로그램
+
+import 모듈명
+-> 모듈명.함수명()
+-> 그 모듈의 다양한 함수를 쓰려면 이렇게
+
+from 모듈명 import 함수명
+-> 함수명()
+-> 이 특정 함수만 여러번 쓸거면 이렇게
+'''
+
+'''
+모듈 : 파이썬 코드를 논리적인 단위로 구조화하여 작성한 "파일"
+       변수,함수,클래스 등을 포함할 수 있음
+       import로 가져와서 씀
+
+라이브러리 : 특정 기능을 수행하기 위해 미리 작성된 "모듈들의 집합"
+            여러 모듈로 구성되어 있음
+            
+ex) Python 표준 라이브러리 > math 모듈, os 모듈, re 모듈 등이 포함되어있음
+    외부 라이브러리 : NumPy, Pandas, Matplotlib 등이 있음
+'''
+
+from datetime import datetime
+# yyyy-mm-dd HH24:mm
+year = datetime.now().year
+month = datetime.now().month
+date = datetime.now().day
+hour = datetime.now().hour
+minute = datetime.now().minute
+print('now :',str(year),'-',str(month),'-',str(date),',',str(hour),':',str(minute))
+
+'''
+함수 vs 메소드
+
+'''
+
+def is_odd(x):
+    '''
+    x가 홀수이면 True 리턴, 짝수이면 False 리턴
+    '''
+    if x%2==1:
+        return True
+    else :
+        return False
+print(is_odd(3))
+
+# 입력으로 들어오는 모든 수의 평균값을 계산해 주는 함수 작성(단, 입력으로 들어오는 수의 개수는 정해져 있지 않음)
+def aver(*nums):
+    sum = 0
+    for num in nums:
+        sum += num
+    return sum/len(nums)
+print(aver(2,4,6))
+
+# 구구단 출력
+def dan(n):
+    for i in range(1,10):
+        print('%d x %d = %d'%(n,i,n*i))
+        
+n = int(input('자연수를 입력하시오(2부터 9까지) :'))
+dan(n)
+
+
+
