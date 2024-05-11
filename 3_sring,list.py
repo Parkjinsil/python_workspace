@@ -138,8 +138,8 @@ url3 = url2[:3]+str(len(url2))+str(url2.count('e'))+"!"
 print(url3) # nav51!
 
 '''
-int를 String으로 : str.()
-ex) str.(url1) 
+int를 String으로 : str()
+ex) str(url1) 
 단, str을 변수명으로 사용했으면 오류가 날 수 있음
 ''' 
 
