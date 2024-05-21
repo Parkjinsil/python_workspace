@@ -171,8 +171,147 @@ fig, ax = matplotlib.pyplot.subplots( nrows = 2, ncols = 2, ...)
 # plt.show()
 
 # subplots로 12개 그리기
-fig, axes = plt.subplots(3,4)
-axes[1,2].plot([1,2,3,4]) # subplots으로 반환한 axes는 배열처럼 접근 가능
-axes[2,1].plot([1,2,3,4],[1,2,3,4])
-plt.tight_layout() # subplot간 margin이 겹치지 않게 하는 함수
+# fig, axes = plt.subplots(3,4)
+# axes[1,2].plot([1,2,3,4]) # subplots으로 반환한 axes는 배열처럼 접근 가능
+# axes[2,1].plot([1,2,3,4],[1,2,3,4])
+# plt.tight_layout() # subplot간 margin이 겹치지 않게 하는 함수
+# plt.show()
+
+# fig, ax = plt.subplots(1,2) # 1행 2열
+# fig.suptitle('figure title')
+# ax[0].set_title('ax[0] title')
+# ax[1].set_title('ax[1] title')
+# plt.tight_layout()
+# plt.show()
+
+# subplot으로 다른 크기 그리기
+# ax221 = plt.subplot(2,2,1)
+# ax222 = plt.subplot(2,2,2)
+# ax212 = plt.subplot(2,1,2)
+
+# ax221.scatter([1,2,3],[3,2,1])
+# ax212.plot([1,2,3,4,5]) # subplot으로 만든 ax는 각각을 개별적으로 사용할 수 있음
+
+# plt.tight_layout()
+# plt.show()
+
+# plt.figure(figsize=(8,8))
+# plt.subplot(3,2,1)
+# plt.subplot(3,2,3)
+# plt.subplot(3,2,5)
+# plt.subplot(2,2,2)
+# plt.subplot(2,2,4)
+# plt.show()
+
+# plt.subplot(221)
+# triXAxis = np.linspace(-4,4,100)
+# sinYAxis = np.sin(triXAxis)
+# cosYAxis = np.cos(triXAxis)
+# plt.plot(triXAxis,sinYAxis)
+# plt.plot(triXAxis,cosYAxis)
+
+# plt.subplot(223)
+# logXAxis = np.linspace(1,10,100)
+# logYAxis = np.log(logXAxis)
+# plt.plot(logXAxis, logYAxis)
+
+# plt.subplot(122)
+# quadXAxis = np.linspace(-10,10,100)
+# quadYAxis = quadXAxis**2
+# plt.plot(quadXAxis, quadYAxis)
+
+# plt.show()
+
+# fig, ax = plt.subplots(2,3)
+# for i in range(2):
+#     for j in range(3):
+#         ax[i, j].text(0.3, 0.5, str((i,j)),fontsize=11) # 텍스트만 표시
+# plt.tight_layout()
+# plt.show()
+
+# Grid로 나누기
+# grid = plt.GridSpec(2,3,wspace=0.4, hspace=0.3)
+
+# X = np.random.randn(100)
+# Y = np.random.randn(100)
+# plt.subplot(grid[0,0]).scatter(X,Y)
+
+# X = np.arange(10) # 정규 분포를 가지는 데이터
+# Y = np.random.uniform(1,10,10)
+# plt.subplot(grid[0,1:]).bar(X,Y)
+
+# X = np.linspace(0,10,100)
+# Y = np.cos(X)
+# plt.subplot(grid[1, :2]).plot(X,Y)
+
+# Z = np.random.uniform(0,1,(5,5))
+# plt.subplot(grid[1,2]).imshow(Z)
+
+# plt.show()
+
+# grid = plt.GridSpec(3,3, wspace = 0.4, hspace=0.3)
+
+# X = np.random.randn(100)
+# Y = np.random.randn(100)
+# plt.subplot(grid[0,:]).scatter(X,Y)
+
+# X = np.arange(1.0,4.0)
+# Y = X
+# plt.subplot(grid[1,0:2]).plot(X,Y,'r--')
+
+# Z = np.random.uniform(0,5,(10,5))
+# plt.subplot(grid[1:,2]).imshow(Z)
+
+# X = np.linspace(0,10,100)
+# Y = np.cos(X)
+# plt.subplot(grid[2,0]).plot(X,Y,'g-')
+
+# X = np.arange(10)
+# Y = np.random.uniform(1,10,10)
+# plt.subplot(grid[2,1]).bar(X,Y)
+
+# plt.show()
+
+'''
+np.linspace() vs np.random.uniform()
+: linspace()는 특정 범위 내에서 균등한 간격으로 숫자를 생성
+  uniform()은 특정 범위 내에서 균등분포를 따르는 임의의 난수(불규칙적이고 예측 불가능한 수)를 생성 (random과 같이 사용해야함)
+  -> linspace()는 주로 그래프 축이나 범위를 정의할 때 사용
+     uniform()은 실험이나 시뮬레이션에서 난수가 필요할 때 사용
+     
+  ex) x = linspace(0,10,5) 
+      random_nums = np.random.uniform(0,1,5)  : 0 과 1 사이의 5개의 난수
+'''
+
+# x = np.arange(1,10)
+# y1 = x*5
+# y2 = x*1
+# y3 = x*0.3
+# y4 = x*0.2
+
+# plt.subplot(1,2,1)
+# plt.plot(x,y1)
+# plt.subplot(1,2,2)
+# plt.plot(x,y2)
+# plt.show()
+
+# 제주도 데이터 문제
+'''
+barh 함수 : 가로 방향의 바 차트 그리는데 사용
+
+plt.barh(x, height, height=0.8, left=None, **kwargs)
+-> x : 바의 x좌표 값을 나타내는 배열 또는 숫자
+   height : 바의 높이를 나타내는 배열 또는 숫자
+   height : 바의 상대적인 높이(0과 1 사이의 값, 기본값은 0.8)
+   left : 바의 왼쪽 가장자리 x좌표 값(기본값은 None)
+   **kwargs : 색상, 에지, 색상, 라벨 등의 옵션 매개변수
+'''
+y = np.arange(3)
+years = ['2010','2011','2012']
+domestic = [6801, 7695, 8010]
+foreign = [777, 1046, 1681]
+
+plt.barh(y, domestic)
+plt.barh(y, foreign)
+plt.yticks(y, years)
 plt.show()
