@@ -306,12 +306,100 @@ plt.barh(x, height, height=0.8, left=None, **kwargs)
    left : 바의 왼쪽 가장자리 x좌표 값(기본값은 None)
    **kwargs : 색상, 에지, 색상, 라벨 등의 옵션 매개변수
 '''
-y = np.arange(3)
-years = ['2010','2011','2012']
-domestic = [6801, 7695, 8010]
-foreign = [777, 1046, 1681]
+# y = np.arange(3)
+# years = ['2010','2011','2012']
+# domestic = [6801, 7695, 8010]
+# foreign = [777, 1046, 1681]
 
-plt.barh(y, domestic)
-plt.barh(y, foreign)
-plt.yticks(y, years)
+# plt.barh(y, domestic, height=0.25)
+# plt.barh(y-0.3, foreign, height = 0.25)
+# plt.yticks(y, years)
+# plt.show()
+
+# x = np.arange(3)
+# years = ['2010','2011','2012']
+# domestic = [6801, 7695, 8010]
+# foreign = [777, 1046, 1681]
+
+# plt.bar(x, domestic, width=0.25)
+# plt.bar(x+0.3, foreign, width=0.25)
+# plt.xticks(x, years)
+# plt.show()
+
+'''
+파이 차트 pie()
+: 점유율, 여론조사 등을 표현할 때 (범주형 데이터)
+
+autopct 인자
+: 부채꼴 안에 표시될 숫자의 형식 지정함
+  만약 %까지 표시하고자 할 경우 %.2f%%처럼 %를 두개 연속해서 입력해야함
+  
+explode 인자
+: 각 항목이 파이의 원점에서 튀어나오는 정도
+'''
+# data = [5,4,6,11]
+# clist = ['cyan', 'gray', 'orange', 'red']
+# explode = [.06, .07, .08, .09]
+# plt.pie(data, autopct = '%.2f%%', colors=clist, labels=clist, explode =explode)
+# plt.show()
+
+'''
+히트맵
+: 열 분포 형태로 정보를 표현하는 방법
+'''
+# data = np.random.random((10,10)) # 임의의 수를 가진 10x10 크기의 배열
+# plt.imshow(data, cmap='Greys')
+# plt.colorbar()
+# plt.show()
+
+'''
+히스토그램
+: 주어진 자료를 몇 개의 구간으로 나누고 각 구간의 도수를 조사하여 나타낸 막대 그래프
+  가로축은 구간, 세로 축은 도수
+'''
+# heights = np.array([175, 165, 164, 164, 171, 165, 160, 169, 164, 159, 163, 167,
+#                     163, 172, 159, 160, 156, 162, 166, 162, 158, 167, 160, 161,
+#                     156, 172, 168, 165, 165, 177])
+# plt.hist(heights, bins=6) # heights 자료값은 6개의 빈에 넣어서 히스토그램으로 시각화하는 코드
+# plt.xlabel('height')
+# plt.ylabel('frequency')
+# plt.show()
+
+# f1 = np.random.normal(loc=0, scale=1, size=10000) # 평균이 0, 표준편자가 1인 정규분포에서 10,000개의 난수를 생성하여 f1에 저장
+# f2 = np.random.normal(loc=3, scale=.5, size=10000) 
+
+# plt.hist(f1, bins=200, color='red', alpha=.7, # 히스토그램의 막대 개수를 200개로 지정, alpha=0.7은 막대의 투명도 지정
+#          label='loc = 0, scale = 1')
+# plt.hist(f2, bins=200, color='blue', alpha=.5,
+#          label='loc = 3, scale = .5')
+# plt.show()
+
+from scipy.stats import norm
+
+# # 평균이 10.0이고 분산이 3인 1,000개의 데이터를 생성
+# data = norm.rvs(10.0, 3, size=1000)
+# # 히스토그램을 그림 density=True -> 확률 밀도 값을 반환함
+# plt.hist(data, bins=20, density=True, alpha=0.6, color='b')
+# # 정규 분포를 데이터에 피팅함
+# mu, std = norm.fit(data)
+# # scipy의 pdf는 평균, 표준편차로부터 확률 밀도 함수를 생성
+# xmin, xmax = plt.xlim() # x의 최소, 최대값을 pyplot으로부터 구함
+# x = np.linspace(xmin, xmax, 100)
+# p = norm.pdf(x, mu, std) # 빨간색 실선으로 그려지는 확률 밀도(pdf) 함수
+# plt.plot(x, p, 'r', linewidth=2)
+# plt.show()
+
+# 캔들 차트
+# 넘파이의 난수 모듈에 있는 정규 분포에 따르는 난수 100개를 생성
+# rand_data = np.random.randn(100)
+# plt.boxplot(rand_data)
+# plt.show()
+
+np.random.seed(85)
+data1 = np.random.normal(100, 10, 200) # 평균이 100이고 분산이 10
+data2 = np.random.normal(100, 40, 200)
+data3 = np.random.normal(80, 40, 200)
+data4 = np.random.normal(80, 60, 200)
+
+plt.boxplot([data1, data2, data3, data4])
 plt.show()
